@@ -1,0 +1,24 @@
+{
+  "name": "riker",
+  "version": "0.1.0",
+  "description": "Makes it so",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otterthecat/riker"
+  },
+  "keywords": [
+    "scaffold",
+    "generator",
+    "otc"
+  ],
+  "author": "Otter the Cat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/otterthecat/riker/issues"
+  },
+  "homepage": "https://github.com/otterthecat/riker"
+}

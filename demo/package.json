@@ -1,0 +1,24 @@
+{
+  "name": "Rawr",
+  "version": "0.1.0",
+  "description": "lots of things",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otterthecat/Rawr"
+  },
+  "keywords": [
+    "scaffold",
+    "generator",
+    "otc"
+  ],
+  "author": "Otter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/otterthecat/Rawr/issues"
+  },
+  "homepage": "https://github.com/otterthecat/Rawr"
+}
