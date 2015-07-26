@@ -1,14 +1,18 @@
 var fs = require('fs');
 var Prompt = require('promptosaurus');
-var prompt = new Prompt();
 var ejs = require('ejs');
 var blowgun = require('blowgun')(ejs);
-var data = {};
-var mode = null;
 
+// streams for templates
 var readStream = fs.createReadStream('templates/package.json', {'encoding': 'utf8'});
 var writeStream = fs.createWriteStream('demo/package.json');
 
+// data/options for project
+var data = {};
+var mode = null;
+
+// kick off the interrogation
+var prompt = new Prompt();
 prompt.add('what is the name of your project?', function(pName){
   data.project = pName;
 })
