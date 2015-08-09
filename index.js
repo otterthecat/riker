@@ -4,8 +4,6 @@ var Prompt = require('promptosaurus');
 var ejs = require('ejs');
 var blowgun = require('blowgun')(ejs);
 
-var copyConfig = require('./lib/copy-configs');
-
 // data/options for project
 var data = {};
 var mode = null;
