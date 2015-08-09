@@ -1,4 +1,5 @@
 var fs = require('fs');
+var ncp = require('ncp').ncp;
 var Prompt = require('promptosaurus');
 var ejs = require('ejs');
 var blowgun = require('blowgun')(ejs);
@@ -11,9 +12,10 @@ var mode = null;
 var targetDirectory = process.cwd();
 
 // streams for templates
+/*
 var readStream = fs.createReadStream(__dirname + '/templates/package.json', {'encoding': 'utf8'});
 var writeStream = fs.createWriteStream(targetDirectory + '/package.json');
-
+*/
 
 // kick off the interrogation
 var prompt = new Prompt();
@@ -30,10 +32,23 @@ prompt.add('what is the name of your project?', function(pName){
   mode = projectMode;
 })
 .done(function(){
-  copyConfig();
-  readStream.pipe(blowgun(data))
-    .pipe(writeStream);
-  this.log('Mission complete.');
+
+  var options = {"transform": function(read, write, file){
+      // something of a hack, as the passed read stream does not allow
+      // to set encoding, so doing it manually
+      fs.createReadStream(file.name, {"encoding": "utf8"})
+        .pipe(blowgun(data))
+        .pipe(write);
+    }
+  }
+
+  ncp(__dirname + '/templates/', targetDirectory, options, function(err){
+    if(err){
+      console.log('Error copying stuff ', err);
+    } else {
+      console.log('mission complete')
+    }
+  });
 });
 
 module.exports = prompt;

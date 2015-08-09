@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/otterthecat/riker/issues"
   },
-  "homepage": "https://github.com/otterthecat/riker"
+  "homepage": "https://github.com/otterthecat/riker",
+  "dependencies": {
+    "ncp": "^2.0.0"
+  }
 }
