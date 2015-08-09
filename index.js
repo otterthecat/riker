@@ -3,13 +3,17 @@ var Prompt = require('promptosaurus');
 var ejs = require('ejs');
 var blowgun = require('blowgun')(ejs);
 
-// streams for templates
-var readStream = fs.createReadStream('templates/package.json', {'encoding': 'utf8'});
-var writeStream = fs.createWriteStream('demo/package.json');
+var copyConfig = require('./lib/copy-configs');
 
 // data/options for project
 var data = {};
 var mode = null;
+var targetDirectory = process.cwd();
+
+// streams for templates
+var readStream = fs.createReadStream(__dirname + '/templates/package.json', {'encoding': 'utf8'});
+var writeStream = fs.createWriteStream(targetDirectory + '/package.json');
+
 
 // kick off the interrogation
 var prompt = new Prompt();
@@ -26,8 +30,10 @@ prompt.add('what is the name of your project?', function(pName){
   mode = projectMode;
 })
 .done(function(){
+  copyConfig();
   readStream.pipe(blowgun(data))
     .pipe(writeStream);
   this.log('Mission complete.');
-})
-.ask();
+});
+
+module.exports = prompt;
