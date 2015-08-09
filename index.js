@@ -3,6 +3,7 @@ var ncp = require('ncp').ncp;
 var Prompt = require('promptosaurus');
 var ejs = require('ejs');
 var blowgun = require('blowgun')(ejs);
+var npmDeps = require('./lib/deps');
 
 // data/options for project
 var data = {};
@@ -22,6 +23,7 @@ prompt.add('what is the name of your project?', function(pName){
 })
 .add('Is this a Node, HTML, or Application project? (n|h|a)', function(projectMode){
   mode = projectMode;
+  data.dependencies = npmDeps[projectMode] || [];
 })
 .done(function(){
 

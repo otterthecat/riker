@@ -4,7 +4,7 @@
   "description": "<%= description %>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/gulp mocha:istanbul"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/otterthecat/<%= project %>/issues"
   },
-  "homepage": "https://github.com/otterthecat/<%= project %>"
+  "homepage": "https://github.com/otterthecat/<%= project %>",
+  "devDependencies": {
+<% dependencies.forEach(function(dep, idx, array) { -%>
+<% if(idx === array.length - 1){ -%>
+    "<%= dep.name %>": "<%= dep.version %>"
+<% } else { -%>
+    "<%= dep.name %>": "<%= dep.version %>",
+<% } -%>
+<% }); -%>
+  }
 }
